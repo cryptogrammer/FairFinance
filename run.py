@@ -1,7 +1,7 @@
 import os, sys
 import pickle, itertools
 
-os.system("python stockPerformance.py 2014 7 1 2014 10 1 AAPL ADP MSFT FB > test.txt")
+os.system("python stockPerformance.py 2014 1 1 2015 1 1 AAPL ADP MSFT FB > test.txt")
 print("STOCK PERFORMANCE DONE")
 ls_safe_stocks = []
 f = open('numOptimal', 'r')
@@ -32,7 +32,7 @@ temp = temp.replace(",","")
 temp = temp.replace(")","")
 temp = temp.replace("]","")
 temp = temp.replace("[","")
-os.system("python allocation.py 2014 7 1 2014 10 1 " + str(temp))
+os.system("python allocation.py 2014 1 1 2015 1 1 " + str(temp))
 print("ALLOCATION DONE")
 
 ## 2 Year Sharpe
@@ -48,7 +48,7 @@ print tempData
 stocks = tempData[0:tempData.index('(')-1]
 allocations = tempData[tempData.index('(')+1:tempData.index(')')]
 allocations = allocations.replace(",","")
-os.system("python twoYearSharpe.py 2014 7 1 2014 10 1 " + stocks + " " + allocations)
+os.system("python twoYearSharpe.py 2013 1 1 2015 1 1 " + stocks + " " + allocations)
 print("2 DONE")
 
 
@@ -64,7 +64,7 @@ tempData = f.readline()
 stocks = tempData[0:tempData.index('(')-1]
 allocations = tempData[tempData.index('(')+1:tempData.index(')')]
 allocations = allocations.replace(",","")
-os.system("python threeMonthAnalysis.py 2014 7 1 2014 10 1 " + stocks + " " + allocations)
+os.system("python threeMonthAnalysis.py 2014 9 1 2015 1 1 " + stocks + " " + allocations)
 print("3 DONE")
 
 twoYearSharpe = []

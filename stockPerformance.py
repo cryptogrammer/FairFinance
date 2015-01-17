@@ -72,9 +72,9 @@ def main():
     f = open('optimalStocks', 'w')
     for m in newKeyList:
 	#print m
-	if(numStocks <= 0 or m < 1):
-		break
-	ls_final_performance[ls_sorted[m]] = [ls_performance[ls_sorted[m]]]
+	# or m < 1
+	if(numStocks <= 0):
+		ls_final_performance[ls_sorted[m]] = [ls_performance[ls_sorted[m]]]
         numStocks = numStocks -1
 	f.write(str(ls_sorted[m]) + '\n')
     f.close()
