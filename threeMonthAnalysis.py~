@@ -50,8 +50,9 @@ def main():
 
     std_dev, daily_return, sharpe, cumulative_return = simulate(dt_start, dt_end, ls_symbols, alloc)
     f = open('three_month_analysis', 'a')
-    temp = str(ls_symbols) + " " + str(sharpe) + ", " + str(std_dev)
+    temp = str(sharpe) + ", " + str(std_dev)
     f.write(temp)
+    f.write('\n')
     f.close()
 
 

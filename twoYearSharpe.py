@@ -49,11 +49,11 @@ def main():
     for i in range(len(alloc)):
 	alloc[i] = float(alloc[i])
     std_dev, daily_return, sharpe, cumulative_return = simulate(dt_start, dt_end, ls_symbols, alloc)
-    print("SHHHHHHHHHHHHHHHHHHHHHHHHHHHHARP")
     print sharpe
     f = open('two_year_sharpe', 'a')
     temp = str(sharpe)
     f.write(temp)
+    f.write('\n')
     f.close()
     print "Symbols: ", ls_symbols
     print "Sharpe Ratio: ", sharpe

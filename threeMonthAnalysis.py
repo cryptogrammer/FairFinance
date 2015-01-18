@@ -52,7 +52,9 @@ def main():
     f = open('three_month_analysis', 'a')
     temp = str(sharpe) + ", " + str(std_dev)
     f.write(temp)
+    f.write('\n')
     f.close()
+
 
 
 if __name__ == '__main__':

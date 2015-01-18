@@ -16,7 +16,6 @@ def simulate(dt_start, dt_end, ls_symbols, alloc):
     print ("VERY IMPORTANT")
     dt_timeofday = dt.timedelta(hours=16)
     ldt_timestamps = du.getNYSEdays(dt_start, dt_end, dt_timeofday)
-
     c_dataobj = da.DataAccess('Yahoo')
     ls_keys = ['open', 'high', 'low', 'close', 'volume', 'actual_close']
     ldf_data = c_dataobj.get_data(ldt_timestamps, ls_symbols, ls_keys)
@@ -25,6 +24,7 @@ def simulate(dt_start, dt_end, ls_symbols, alloc):
     print d_data
     d_data = d_data.fillna(method='ffill')
     d_data = d_data.fillna(method='bfill')
+    d_data = d_data.fillna(1.0)
     temp_data = d_data.values
 
     print temp_data
@@ -67,15 +67,13 @@ def main():
     for i in range(1,len(keylist)+1):
 	newKeyList.append(keylist[len(keylist) -i])
     print newKeyList
-    maxNumStocks = 15
+    maxNumStocks = 10
     numStocks = maxNumStocks
     f = open('optimalStocks', 'w')
     for m in newKeyList:
-	#print m
-	if(numStocks <= 0 or m < 1):
-		break
-	ls_final_performance[ls_sorted[m]] = [ls_performance[ls_sorted[m]]]
-        numStocks = numStocks -1
+	if(numStocks > 0 and  m > 1):
+		ls_final_performance[ls_sorted[m]] = [ls_performance[ls_sorted[m]]]
+        	numStocks = numStocks -1
 	f.write(str(ls_sorted[m]) + '\n')
     f.close()
     print ls_final_performance
@@ -83,9 +81,6 @@ def main():
     x = maxNumStocks-numStocks
     fk.write(str(x))
     fk.close()
-    f = file('stockData.pkl', 'w')
-    pickle.dump(ls_final_performance, f)
-
 
 if __name__ == '__main__':
     main()

@@ -67,15 +67,13 @@ def main():
     for i in range(1,len(keylist)+1):
 	newKeyList.append(keylist[len(keylist) -i])
     print newKeyList
-    maxNumStocks = 15
+    maxNumStocks = 10
     numStocks = maxNumStocks
     f = open('optimalStocks', 'w')
     for m in newKeyList:
-	#print m
-	# or m < 1
-	if(numStocks <= 0):
+	if(numStocks > 0 and  m > 1):
 		ls_final_performance[ls_sorted[m]] = [ls_performance[ls_sorted[m]]]
-        numStocks = numStocks -1
+        	numStocks = numStocks -1
 	f.write(str(ls_sorted[m]) + '\n')
     f.close()
     print ls_final_performance
@@ -83,6 +81,7 @@ def main():
     x = maxNumStocks-numStocks
     fk.write(str(x))
     fk.close()
-
+    print("FINAL CUMULATIVE RETURN")
+    print(cumulative_return)
 if __name__ == '__main__':
     main()

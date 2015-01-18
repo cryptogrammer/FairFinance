@@ -23,12 +23,6 @@ def simulate(dt_start, dt_end, ls_symbols, alloc):
     d_data = d_data['actual_close']
     d_data = d_data.fillna(method='ffill')
     d_data = d_data.fillna(method='bfill')
-    for k in d_data.values:
-	for m in k:
-		print m
-		if(np.isnan(m)):
-			m = 1.0
-		print m
     temp_data = d_data.values
     print temp_data
     normalized = temp_data/temp_data[0, :]
@@ -55,7 +49,6 @@ def main():
     for i in range(len(alloc)):
 	alloc[i] = float(alloc[i])
     std_dev, daily_return, sharpe, cumulative_return = simulate(dt_start, dt_end, ls_symbols, alloc)
-    print("SHHHHHHHHHHHHHHHHHHHHHHHHHHHHARP")
     print sharpe
     f = open('two_year_sharpe', 'a')
     temp = str(sharpe)
